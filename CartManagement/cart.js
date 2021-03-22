@@ -13,11 +13,11 @@ function storeinSession(cartObj) {
 }
 function add(index) {
     var cartObj = [];
-    var item = readfromData(index);
+    var item = readformData(index);
     cartObj.push(item);
     storeinSession(cartObj);
 }
-function readfromData(index) {
+function readformData(index) {
     var item = {};
     item.name = document.getElementById("name" + index).textContent;
     item.price = document.getElementById("price" + index).textContent;

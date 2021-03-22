@@ -11,14 +11,14 @@ function storeinSession(cartObj:any):void {
         sessionStorage.setItem("cart-item",JSON.stringify(cartObj));
     }
 }
-function add(index:number): void {
+function add(index:number): void { 
     let cartObj:any = [];
-    let item:any = readfromData(index);
+    let item:any = readformData(index);
     cartObj.push(item);
     storeinSession(cartObj);
 }
 
-function readfromData(index:number):any {
+function readformData(index:number):any {  //item = {"name": "watch", "price": 99}
     var item:any = {};
     item.name = document.getElementById("name" + index).textContent;
     item.price = document.getElementById("price" + index).textContent;
