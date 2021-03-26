@@ -1,21 +1,21 @@
 <div>
     <h2>My Portfolio</h2>
      <p>Welcome</p>
-     <form [formGroup]="loginRef" (ngSubmit)="save()">
+     <form [formGroup]="portfolioRef" (ngSubmit)="save()">
      <label>Contact Name</label>
-     <input type="text" formControlName="fname" #CName><br/>
+     <input type="text" formControlName="cname"><br/>
      <label>Phone Number</label>
-     <input type="tel" formControlName="number" #PNumber><br/>
+     <input type="tel" formControlName="phoneNumber"><br/>
      <input type="submit" value="save">
      <table id="myDetails">
          <thead>
              <tr>
-             <th>name</th>
+             <th>Name</th>
              <th>Phone No:</th>
              </tr>
-             <tr>
-                 <td>{{cname}}</td>
-                 <td>{{number1}}</td>
+             <tr *ngFor="let p of portfolioList">
+                 <td>{{p.name}}</td>
+                 <td>{{p.phoneNumber}}</td>
              </tr>
          </thead>
      </table>

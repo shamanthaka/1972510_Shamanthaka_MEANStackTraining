@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {FormGroup, FormControl} from '@angular/forms';
+import {FormGroup, FormControl, FormBuilder} from '@angular/forms';
 import { contactDetails } from '../contact.details';
+import { Portfolio } from '../models/Portfolio';
 
 
 @Component({
@@ -11,21 +12,30 @@ import { contactDetails } from '../contact.details';
 })
 export class PortfolioComponent implements OnInit {
   
-  loginRef= new FormGroup({
-    cname:new FormControl(),
-    number:new FormControl()
+  portfolio: Portfolio = new Portfolio();
+  portfolioList: Portfolio[] = [];
+  
+  portfolioRef: FormGroup = new FormGroup({
+    cname: new FormControl(),
+    phoneNumber:new FormControl(),    
   });
  
 
-  constructor() { }
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
+    this.portfolioRef = this.fb.group({
+      cname: '',
+      phoneNumber:'',  
+    })
   }
   save(){
-    let cname=this.loginRef.get("fname")?.value;
-    let number1=this.loginRef.get("number")?.value;
-    console.log(cname)
-    console.log(number1)
+    let myPortfolioObj = this.portfolioRef.value;
+    this.portfolio = new Portfolio;
+    this.portfolio.name = myPortfolioObj.cname;
+    this.portfolio.phoneNumber = myPortfolioObj.phoneNumber;
+    this.portfolioList.push(this.portfolio);
+    console.log(this.portfolioRef.value);
     
   }
 }

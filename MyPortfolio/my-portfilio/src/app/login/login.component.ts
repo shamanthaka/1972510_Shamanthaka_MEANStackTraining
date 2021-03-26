@@ -10,38 +10,31 @@ import {FormControl, FormGroup} from '@angular/forms';
 export class LoginComponent implements OnInit {
 
   loginRef= new FormGroup({
-    user2:new FormControl(),
-    pass2:new FormControl()
+    userName:new FormControl(),
+    password:new FormControl()
   });
 
   constructor(public router:Router) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void { }
+
+  login(){
+    let userForm = this.loginRef.value;
+    console.log("Password details from form: " + userForm);
+
+    let userObj:any = sessionStorage.getItem("userInfo");
+    let userJson:any = JSON.parse(userObj);
+    console.log("got it from session storage: " + userJson);
+    if(userForm.userName == userJson.userName && userForm.password == userJson.password){
+      console.log("login successful.")
+      this.router.navigate(["portfolio"]);
+    }else{
+      console.log("login failed.")
+    }
+
   }
-login(){
-   let a=this.loginRef.get("user2")?.value
-   let b=this.loginRef.get("pass2")?.value
-   let key1 =sessionStorage.getItem("names1");
-   let key2=sessionStorage.getItem("names2");
-   //let key=sessionStorage.getItem(JSON.parse("names"))
-   //console.log(a)
-   //console.log(b)
-   //console.log(key)
-   //console.log(key2)
-   if((a==key1) && (b==key2)){ 
-      console.log("successful")
-     this.router.navigate(["portfolio"])
-    }
-    else{
-      console.log("false")
-    }
-   //console.log(b)
-    //if((a==key(user))&&(b==key.pass1)){
-      
 
-}
-
-signup(){
-  this.router.navigate(["signup"])
-}
+  signup(){
+    this.router.navigate(["signup"])
+  }
 }
